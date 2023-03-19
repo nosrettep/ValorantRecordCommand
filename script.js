@@ -42,7 +42,7 @@
 
     for (let i = 0; i < getMmrHistoryResponse.data.length; i++) {
       const match = getMmrHistoryResponse.data[i];
-      const priorMatch = getMmrHistoryResponse.data[i+1]
+      const priorMatch = getMmrHistoryResponse.data[i+1];
       const dateUnixS = match.date_raw;
       const mmrChange = match.mmr_change_to_last_game;
       const rawElo = match.elo;
