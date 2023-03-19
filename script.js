@@ -30,7 +30,6 @@
     }} */
     const getMmrHistoryResponse = JSON.parse(getMmrHistoryResponseJson);
 
-    let mmrChangeThisStream = 0;
     let winCountThisStream = 0;
     let lossCountThisStream = 0;
     let drawCountThisStream = 0;
@@ -43,10 +42,10 @@
     for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
       const date = new Date(dateUnixS * 1000);
       if (date >= streamStartDate) {
-        console.log(`date: ${date}`);
-        console.log(`mmrChange: ${mmrChange}`);
-        console.log(`rawElo: ${rawElo}\n`)
-        mmrChangeThisStream += mmrChange;
+          
+        //console.log(`date: ${date}`);
+        //console.log(`mmrChange: ${mmrChange}`);
+        //console.log(`rawElo: ${rawElo}\n`)
 
         if (mmrChange > 0) {
           winCountThisStream++;
@@ -70,9 +69,9 @@
     }
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
     
-    console.log(`earliestRawEloThisStream: ${earliestRawEloThisStream}`);
-    console.log(`latestRawEloThisStream: ${latestRawEloThisStream}`);
-    console.log(`fullStreamEloChange: ${fullStreamEloChange}`);
+    //console.log(`earliestRawEloThisStream: ${earliestRawEloThisStream}`);
+    //console.log(`latestRawEloThisStream: ${latestRawEloThisStream}`);
+    //console.log(`fullStreamEloChange: ${fullStreamEloChange}`);
 
     return `Bini is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
