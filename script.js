@@ -42,12 +42,12 @@
 
     for (let i = 0; i < getMmrHistoryResponse.data.length; i++) {
       console.log(`i: ${i}`)
-      const match = getMmrHistoryResponse.data[i];
+      let match = getMmrHistoryResponse.data[i];
       console.log(`${match.elo}\n`)
-      const priorMatch = getMmrHistoryResponse.data[i+1];
-      const dateUnixS = match.date_raw;
-      const mmrChange = match.mmr_change_to_last_game;
-      const rawElo = match.elo;
+      let priorMatch = getMmrHistoryResponse.data[i+1];
+      let dateUnixS = match.date_raw;
+      let mmrChange = match.mmr_change_to_last_game;
+      let rawElo = match.elo;
       
       const date = new Date(dateUnixS * 1000);
       if (date >= streamStartDate) {
