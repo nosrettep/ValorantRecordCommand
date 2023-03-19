@@ -4,7 +4,6 @@
   /** @type {string} */ urlEncodedGetMmrHistoryResponseJson,
 ) => {
 
-
   /* streamStartDateString will be a date string even if the channel is not currently live (the date will be the current
      date). This may be a Nightbot bug. This is why streamUptimeString is needed to check whether the channel is live */
   if (/\bnot live\b/i.test(streamUptimeString)) {
