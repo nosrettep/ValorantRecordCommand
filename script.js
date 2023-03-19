@@ -29,18 +29,27 @@
     }} */
     const getMmrHistoryResponse = JSON.parse(getMmrHistoryResponseJson);
 
+    // counter variables to keep track of record
     let winCountThisStream = 0;
     let lossCountThisStream = 0;
     let drawCountThisStream = 0;
     
-    let latestMatchThisStream = 0;
+    // keep track of 
+    let latestMatchDateThisStream = 0;
     let latestRawEloThisStream = null;
-    let earliestMatchThisStream = Number.POSITIVE_INFINITY;
+    let earliestMatchDateThisStream = Number.POSITIVE_INFINITY;
     let earliestRawEloThisStream = null;
 
-    for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
+    for (let i = 0; i < getMmrHistoryResponse.data.length; i++) {
+      const match = getMmrHistoryResponse.data[i];
+      const priorMatch = getMmrHistoryResponse.data[i+1]
+      const dateUnixS = match.date_raw;
+      const mmrChange = match.mmr_change_to_last_game;
+      const rawElo = match.elo;
+      
       const date = new Date(dateUnixS * 1000);
       if (date >= streamStartDate) {
+        // tally win/loss/draw
         if (mmrChange > 0) {
           winCountThisStream++;
         }
@@ -51,13 +60,15 @@
           lossCountThisStream++;
         }
 
-        if (latestMatchThisStream < date) {
-          latestMatchThisStream = date;
+        // keep track of rawElo values from the earliest and latest
+        // matches of the stream
+        if (latestMatchDateThisStream < date) {
+          latestMatchDateThisStream = date;
           latestRawEloThisStream = rawElo;
         }
-        if (earliestMatchThisStream > date) {
-          earliestMatchThisStream = date;
-          earliestRawEloThisStream = rawElo - mmrChange;
+        if (earliestMatchDateThisStream > date) {
+          earliestMatchDateThisStream = date;
+          earliestRawEloThisStream = priorMatch.elo;
         }
       }
     }
