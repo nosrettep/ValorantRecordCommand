@@ -41,7 +41,9 @@
     let earliestRawEloThisStream = null;
 
     for (let i = 0; i < getMmrHistoryResponse.data.length; i++) {
+      console.log(`i: ${i}`)
       const match = getMmrHistoryResponse.data[i];
+      console.log(`${match.elo}\n`)
       const priorMatch = getMmrHistoryResponse.data[i+1];
       const dateUnixS = match.date_raw;
       const mmrChange = match.mmr_change_to_last_game;
@@ -72,6 +74,8 @@
         }
       }
     }
+    console.log(`latestRawEloThisStream: ${latestRawEloThisStream}`);
+    console.log(`earliestRawEloThisStream ${earliestRawEloThisStream}`);
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
 
     return `Bini is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
