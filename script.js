@@ -36,7 +36,7 @@
     
     let latestMatchThisStream = 0;
     let latestRawEloThisStream = null;
-    let earliestMatchThisStream = Number.INFINITY;
+    let earliestMatchThisStream = Number.POSITIVE_INFINITY;
     let earliestRawEloThisStream = null;
 
     for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
