@@ -29,27 +29,18 @@
     }} */
     const getMmrHistoryResponse = JSON.parse(getMmrHistoryResponseJson);
 
-    // counter variables to keep track of record
     let winCountThisStream = 0;
     let lossCountThisStream = 0;
     let drawCountThisStream = 0;
     
-    // keep track of 
-    let latestMatchDateThisStream = 0;
+    let latestMatchThisStream = 0;
     let latestRawEloThisStream = null;
-    let earliestMatchDateThisStream = Number.POSITIVE_INFINITY;
+    let earliestMatchThisStream = 100000000000000;
     let earliestRawEloThisStream = null;
 
-    for (let i = 0; i < getMmrHistoryResponse.data.length; i++) {
-      let match = getMmrHistoryResponse.data[i];
-      let priorMatch = getMmrHistoryResponse.data[i+1];
-      let dateUnixS = match.date_raw;
-      let mmrChange = match.mmr_change_to_last_game;
-      let rawElo = match.elo;
-      
+    for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
       const date = new Date(dateUnixS * 1000);
       if (date >= streamStartDate) {
-        // tally win/loss/draw
         if (mmrChange > 0) {
           winCountThisStream++;
         }
@@ -60,19 +51,16 @@
           lossCountThisStream++;
         }
 
-        // keep track of rawElo values from the earliest and latest
-        // matches of the stream
-        if (latestMatchDateThisStream < date) {
-          latestMatchDateThisStream = date;
+        if (latestMatchThisStream < date) {
+          latestMatchThisStream = date;
           latestRawEloThisStream = rawElo;
         }
-        if (earliestMatchDateThisStream > date) {
-          earliestMatchDateThisStream = date;
-          earliestRawEloThisStream = priorMatch.elo;
+        if (earliestMatchThisStream > date) {
+          earliestMatchThisStream = date;
+          earliestRawEloThisStream = rawElo - mmrChange;
         }
       }
     }
-
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
 
     return `Bini is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
