@@ -2,11 +2,13 @@
   /** @type {string} */ streamUptimeString,
   /** @type {string} */ streamStartDateString,
   /** @type {string} */ urlEncodedGetMmrHistoryResponseJson,
+  /** @type {string} */ playerName,
 ) => {
+
   /* streamStartDateString will be a date string even if the channel is not currently live (the date will be the current
      date). This may be a Nightbot bug. This is why streamUptimeString is needed to check whether the channel is live */
   if (/\bnot live\b/i.test(streamUptimeString)) {
-    return 'TrulyTenzin is not live';
+    return '${playerName} is not live';
   }
 
   const streamStartDate = new Date(streamStartDateString);
@@ -28,23 +30,41 @@
     }} */
     const getMmrHistoryResponse = JSON.parse(getMmrHistoryResponseJson);
 
-    let mmrChangeThisStream = 0;
     let winCountThisStream = 0;
     let lossCountThisStream = 0;
-    for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange} of getMmrHistoryResponse.data) {
+    let drawCountThisStream = 0;
+    
+    let latestMatchThisStream = 0;
+    let latestRawEloThisStream = null;
+    let earliestMatchThisStream = Number.POSITIVE_INFINITY;
+    let earliestRawEloThisStream = null;
+
+    for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
       const date = new Date(dateUnixS * 1000);
       if (date >= streamStartDate) {
-        mmrChangeThisStream += mmrChange;
-
         if (mmrChange > 0) {
           winCountThisStream++;
-        } else {
+        }
+        else if (mmrChange == 0) {
+          drawCountThisStream++;
+        }
+        else {
           lossCountThisStream++;
+        }
+
+        if (latestMatchThisStream < date) {
+          latestMatchThisStream = date;
+          latestRawEloThisStream = rawElo;
+        }
+        if (earliestMatchThisStream > date) {
+          earliestMatchThisStream = date;
+          earliestRawEloThisStream = rawElo - mmrChange;
         }
       }
     }
+    let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
 
-    return `billy bongos#10ZIN is ${mmrChangeThisStream > 0 ? 'UP' : 'DOWN'} ${mmrChangeThisStream}RR. Currently ${winCountThisStream}W-${lossCountThisStream}L`;
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
