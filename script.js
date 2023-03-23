@@ -2,12 +2,13 @@
   /** @type {string} */ streamUptimeString,
   /** @type {string} */ streamStartDateString,
   /** @type {string} */ urlEncodedGetMmrHistoryResponseJson,
+  /** @type {string} */ playerName,
 ) => {
 
   /* streamStartDateString will be a date string even if the channel is not currently live (the date will be the current
      date). This may be a Nightbot bug. This is why streamUptimeString is needed to check whether the channel is live */
   if (/\bnot live\b/i.test(streamUptimeString)) {
-    return 'Bini is not live';
+    return '${playerName} is not live';
   }
 
   const streamStartDate = new Date(streamStartDateString);
@@ -35,7 +36,7 @@
     
     let latestMatchThisStream = 0;
     let latestRawEloThisStream = null;
-    let earliestMatchThisStream = 100000000000000;
+    let earliestMatchThisStream = Number.INFINITY;
     let earliestRawEloThisStream = null;
 
     for (const {date_raw: dateUnixS, mmr_change_to_last_game: mmrChange, elo: rawElo} of getMmrHistoryResponse.data) {
@@ -63,7 +64,7 @@
     }
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
 
-    return `Bini is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
