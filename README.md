@@ -3,9 +3,7 @@ Script(s) to accompany data from api.henrikdev.xyz for use in a chatbot !record 
 
 
 ## Usage Example (Nightbot)
-```
-!addcom !record $(touser), $(eval $(urlfetch json https://raw.githubusercontent.com/nosrettep/ValorantNightbot/main/script.js)('$(twitch $(channel) "{{uptimeLength}}")','$(twitch $(channel) "{{uptimeAt}}")',"$(querystring $(urlfetch json https://api.henrikdev.xyz/valorant/v1/mmr-history/na/username/tag))", 'PlayerName')) | His current rank is $(customapi https://api.kyroskoh.xyz/valorant/v1/mmr/na/username/tag).
-```
+```!addcom !record $(touser), $(eval $(urlfetch json https://raw.githubusercontent.com/nosrettep/ValorantNightbot/main/script.js)('$(twitch $(channel) "{{uptimeLength}}")','$(twitch $(channel) "{{uptimeAt}}")',"$(querystring $(urlfetch json https://api.henrikdev.xyz/valorant/v1/mmr-history/na/username/tag))", 'PlayerName')) | His current rank is $(customapi https://api.kyroskoh.xyz/valorant/v1/mmr/na/username/tag).```
  
  Will produce something similar to:
  ```
