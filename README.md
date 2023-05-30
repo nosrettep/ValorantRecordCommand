@@ -16,4 +16,4 @@ Note that in the above example, `username` should be replaced with the player's 
 ## Limitations
 The !record command assumes that every 0 RR match is a draw, every positive RR match is a win, and every negative RR match is a loss. It cannot tell apart losses from draws which have small amounts of negative RR, for example. Additionally, it only can see 20 games worth of data at maximum. 
 
-Additionally, if the stream begins with the player at the bottom of their division (0 RR) after having ended the prior session on an L with loss protection, or if they begin the stream with 10 RR in their division after having won a rank up with promotion bonus, the reported RR change value for the stream can be off by a small amount.
+Additionally, if the stream begins with an L with loss protection (bringing them to 0 RR), or if they begin the stream with a rank up game, and get boosted up to 10 RR in their division  with a promotion bonus, the reported RR change value for the stream can be off by a small amount.
