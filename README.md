@@ -1,5 +1,5 @@
 # ValorantNightbot
-Script(s) to accompany data from api.henrikdev.xyz for use in a chatbot !record command.
+Script(s) to accompany data from api.henrikdev.xyz for use in a chatbot !record command. See more about the underlying HenrikDev API here: https://github.com/Henrik-3/unofficial-valorant-api
 
 
 ## Usage Example (Nightbot)
