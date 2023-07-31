@@ -8,10 +8,12 @@
   /* streamStartDateString will be a date string even if the channel is not currently live (the date will be the current
      date). This may be a Nightbot bug. This is why streamUptimeString is needed to check whether the channel is live */
   if (/\bnot live\b/i.test(streamUptimeString)) {
-    return `${playerName} is not live.`;
+    const streamStartDate = new Date(new Date() - 1000 * 60 * 60 * 24); // yesterday
+  } else {
+    const streamStartDate = new Date(streamStartDateString);
   }
 
-  const streamStartDate = new Date(streamStartDateString);
+  // const streamStartDate = new Date(streamStartDateString);
   if (Number.isNaN(streamStartDate.valueOf())) {
     return `Failed to parse stream start date: ${streamStartDateString}`.slice(0, 400);
   }
