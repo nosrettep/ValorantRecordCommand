@@ -64,7 +64,9 @@
     }
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
 
-    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
+    let currentRankString = `${getMmrHistoryResponse.data.0.currenttierpatched} - ${getMmrHistoryResponse.data.0.rankingInTier} RR`;
+
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D. | Their current rank is ${currentRankString}.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
