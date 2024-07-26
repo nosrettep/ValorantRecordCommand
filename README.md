@@ -1,9 +1,15 @@
 # Valorant Record Command
 Script(s) to accompany data from api.henrikdev.xyz for use in a chatbot !record command. See more about the underlying HenrikDev API here: https://github.com/Henrik-3/unofficial-valorant-api
 
+## Update: July 25, 2024
+HenrikDev made an update to their API to make it require an API key a while back, and the command won't work any more without adding
+
+```?api_key=YOUR_API_KEY```
+
+to the https://api.henrikdev.xyz URL. To get an API key, follow the instructions on Henrik's site and use the Discord bot to request one.
 
 ## Usage Example (Nightbot)
-```!addcom !record $(touser), $(eval $(urlfetch json https://raw.githubusercontent.com/nosrettep/ValorantNightbot/main/script.js)('$(twitch $(channel) "{{uptimeLength}}")','$(twitch $(channel) "{{uptimeAt}}")',"$(querystring $(urlfetch json https://api.henrikdev.xyz/valorant/v1/mmr-history/na/username/tag))", 'PlayerName')) | His current rank is $(customapi https://api.kyroskoh.xyz/valorant/v1/mmr/na/username/tag?show=combo&display=0).```
+```!addcom !record $(touser), $(eval $(urlfetch json https://raw.githubusercontent.com/nosrettep/ValorantNightbot/main/script.js)('$(twitch $(channel) "{{uptimeLength}}")','$(twitch $(channel) "{{uptimeAt}}")',"$(querystring $(urlfetch json https://api.henrikdev.xyz/valorant/v1/mmr-history/na/username/tag?api_key=YOUR_API_KEY))", 'PlayerName'))```
  
  Will produce something similar to:
  ```
