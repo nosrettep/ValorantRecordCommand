@@ -16,7 +16,7 @@ to the https://api.henrikdev.xyz URL. To get an API key, follow the instructions
  Justin is UP 46RR this stream. Currently 4W - 1L - 0D. | Their current rank is Immortal 3 - 473RR. 
  ```
 
-Note that in the above example, `username` should be replaced with the player's Riot username, `tag` should be replaced with the player's Riot tag, and `PlayerName` should be replaced with whatever name the bot should use to refer to the player / streamer.
+:rotating_light: Note that in the above example, `username` should be replaced with the player's Riot username, `tag` should be replaced with the player's Riot tag, and `PlayerName` should be replaced with whatever name the bot should use to refer to the player / streamer.
 
 
 ## Limitations
