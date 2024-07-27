@@ -4,7 +4,7 @@
   /** @type {string} */ urlEncodedGetMmrHistoryResponseJson,
   /** @type {string} */ playerName,
 ) => {
-  return `Record command is currently down for maintenance. We're waiting on the HenrikDev API that the command relies on to be fixed. Check its status here: https://status.henrikdev.xyz/`;
+  // return `Record command is currently down for maintenance. We're waiting on the HenrikDev API that the command relies on to be fixed. Check its status here: https://status.henrikdev.xyz/`;
 
   /* streamStartDateString will be a date string even if the channel is not currently live (the date will be the current
      date). This may be a Nightbot bug. This is why streamUptimeString is needed to check whether the channel is live */
