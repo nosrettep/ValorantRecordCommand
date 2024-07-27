@@ -67,7 +67,7 @@
     let currentTierPatched = getMmrHistoryResponse.data[0].currenttierpatched;
     let rankingInTier = getMmrHistoryResponse.data[0].ranking_in_tier;
 
-    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D. | Their current rank is ${currentTierPatched} | ${rankingInTier} RR.`;
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D. | Their current rank is ${currentTierPatched} - ${rankingInTier} RR.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
