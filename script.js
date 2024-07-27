@@ -4,7 +4,6 @@
   /** @type {string} */ urlEncodedGetMmrHistoryResponseJson,
   /** @type {string} */ playerName,
 ) => {
-  /*return `Record command is currently down for maintenance. We're waiting on the HenrikDev API that the command relies on to be fixed. Check its status here: https://status.henrikdev.xyz/`;*/
 
   /* streamStartDateString will be a date string even if the channel is not currently live (the date will be the current
      date). This may be a Nightbot bug. This is why streamUptimeString is needed to check whether the channel is live */
@@ -65,9 +64,7 @@
     }
     let fullStreamEloChange = latestRawEloThisStream - earliestRawEloThisStream;
 
-    let currentRankString = `${getMmrHistoryResponse.data[0].currenttierpatched} - ${getMmrHistoryResponse.data[0].ranking_in_tier} RR`;
-
-    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.` //| Their current rank is ${currentRankString}.`;
+    return `${playerName} is ${fullStreamEloChange >= 0 ? 'UP' : 'DOWN'} ${fullStreamEloChange}RR this stream. Currently ${winCountThisStream}W - ${lossCountThisStream}L - ${drawCountThisStream}D.`;
   } catch (e) {
     return `Failed to parse MMR history: ${e.message}: ${getMmrHistoryResponseJson}`.slice(0, 400);
   }
