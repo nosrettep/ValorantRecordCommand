@@ -37,7 +37,7 @@ Note that for lower ranked players this isn't much different than many other cha
 ## Command Templates:
 
 > [!TIP]
-> For each of the below commands, you will have to replace `RiotName`, `RiotTag`, `Region`, `StreamerPronoun`, `StreamerName`, and `StreamerTwitchName` with the appropriate values.
+> For each of the below commands, you will have to replace `RiotName`, `RiotTag`, `Region`, `StreamerPronoun`, and `StreamerName` with the appropriate values.
 
 ```
 - RiotName             (example: "SEN tarik")
@@ -45,7 +45,6 @@ Note that for lower ranked players this isn't much different than many other cha
 - Region               (example: "na") -- could be any of: [eu, na, latam, br, ap, kr]
 - StreamerPronoun      (example: "His")
 - StreamerName         (example: "Tarik") -- or "Tarik's alt account" also works
-- StreamerTwitchName   (example: "tarik") -- must match their Twitch username
 ```
 
 ---
@@ -54,7 +53,7 @@ Note that for lower ranked players this isn't much different than many other cha
 
 #### Record Command
 `
-$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&pronoun=StreamerPronoun&uptime=$(twitch StreamerTwitchName "{{uptimeLength}}")&player_name=StreamerName)
+$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&pronoun=StreamerPronoun&uptime=$(twitch $(channel) "{{uptimeLength}}")&player_name=StreamerName)
 `
 
 #### Rank Command
