@@ -40,11 +40,11 @@ Note that for lower ranked players this isn't much different than many other cha
 > For each of the below commands, you will have to replace `RiotName`, `RiotTag`, `Region`, `StreamerPronoun`, and `StreamerName` with the appropriate values.
 
 ```
-- RiotName             (example: "SEN tarik")
-- RiotTag              (example: "1337")
-- Region               (example: "na") -- could be any of: [eu, na, latam, br, ap, kr]
-- StreamerPronoun      (example: "His")
-- StreamerName         (example: "Tarik") -- or "Tarik's alt account" also works
+- RiotName             (example: "SEN tarik")                                             *required*
+- RiotTag              (example: "1337")                                                  *required*
+- Region               (example: "na") -- could be any of: [eu, na, latam, br, ap, kr]    *required*
+- StreamerPronoun      (example: "His")                                                   *defaults to "Their"*
+- StreamerName         (example: "Tarik") -- or "Tarik's alt account" also works          *optional*
 ```
 
 ---
