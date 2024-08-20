@@ -43,8 +43,8 @@ Note that for lower ranked players this isn't much different than many other cha
 - RiotName             (example: "SEN tarik")                                             *required*
 - RiotTag              (example: "1337")                                                  *required*
 - Region               (example: "na") -- could be any of: [eu, na, latam, br, ap, kr]    *required*
-- StreamerPronoun      (example: "His")                                                   *defaults to "Their"*
-- StreamerName         (example: "Tarik") -- or "Tarik's alt account" also works          *defaults to value of RiotName*
+- StreamerPronoun      (example: "His")                                                   *defaults: "Their"*
+- StreamerName         (example: "Tarik") -- or "Tarik's alt account" also works          *defaults: value of RiotName*
 ```
 
 ---
