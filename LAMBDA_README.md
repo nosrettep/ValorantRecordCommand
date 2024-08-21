@@ -58,7 +58,7 @@ $(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-wes
 
 #### Rank Command
 `
-$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&player_name=StreamerName?rankOnly=true)
+$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&rankOnly=true)
 `
 
 ---
@@ -72,7 +72,7 @@ $(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-wes
 
 #### Rank Command
 `
-$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&player_name=StreamerName?rankOnly=true)
+$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&rankOnly=true)
 `
 
 ---
@@ -86,5 +86,5 @@ $(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-wes
 
 #### Rank Command
 `
-$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&player_name=StreamerName?rankOnly=true)
+$(touser), $(urlfetch https://maycbf42n557zb3oqdraffjc3e0afdcp.lambda-url.us-west-1.on.aws/?name=RiotName&tag=RiotTag&region=Region&rankOnly=true)
 `
